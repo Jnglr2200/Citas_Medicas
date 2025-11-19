@@ -1,0 +1,69 @@
+body {
+    background: #f5f8fc;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* -------- Steps bar -------- */
+
+.steps-bar .step {
+    padding: 10px 20px;
+    margin: 0 15px;
+    border-bottom: 3px solid #c7d1e2;
+    color: #6b7a96;
+    font-weight: 500;
+}
+
+.steps-bar .step.active {
+    border-bottom: 3px solid #0d6efd;
+    color: #0d6efd;
+}
+
+/* -------- Formulario -------- */
+
+.card {
+    border: none;
+    border-radius: 16px;
+}
+
+.form-control,
+.form-select {
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid #cfd9e8;
+    transition: 0.2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.form-label {
+    color: #2d4a7c;
+    font-weight: 600;
+}
+
+/* -------- Tabla -------- */
+
+table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-hover tbody tr:hover {
+    background: #eef4ff !important;
+    transition: 0.2s;
+}
+
+.badge {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+}
+
+/* Botones de acción */
+.btn-warning,
+.btn-danger {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+}
