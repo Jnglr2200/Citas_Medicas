@@ -1,21 +1,21 @@
-// app.js
+
 const API_URL = 'http://localhost:4000/api/citas'; 
 let editandoId = null;
 
-// Elementos del DOM
+
 const form = document.getElementById('cita-form');
 const citasBody = document.getElementById('citas-body');
 const formTitle = document.getElementById('form-title');
 const btnCancelar = document.getElementById('cancelar-edicion');
 const [pacienteInput, fechaInput, horaInput, motivoInput, estadoInput] = 
     ['paciente', 'fecha', 'hora', 'motivo', 'estado'].map(id => document.getElementById(id));
-
+const buscador = document.querySelector('#buscador'); 
 // ------------------------------------------
-// 1. READ (Listar Todas las Citas)
+// 1. READ 
 // ------------------------------------------
 async function listarCitas() {
     try {
-        // Consumo Asíncrono: fetch con async/await
+       
         const response = await fetch(API_URL); 
         
         if (!response.ok) {
@@ -23,14 +23,13 @@ async function listarCitas() {
         }
         
         const citas = await response.json();
-        mostrarCitasEnDOM(citas); // Manipulación del DOM
+        mostrarCitasEnDOM(citas); 
     } catch (error) {
         console.error('Error al listar citas:', error);
         citasBody.innerHTML = `<tr><td colspan="5" class="text-center text-danger">No se pudo conectar con el servidor API.</td></tr>`;
     }
 }
 
-// Manipulación del DOM para mostrar la lista
 function mostrarCitasEnDOM(citas) {
     citasBody.innerHTML = '';
     if (citas.length === 0) {
@@ -69,7 +68,7 @@ function getColorByEstado(estado) {
 
 
 // ------------------------------------------
-// 2. CREATE / UPDATE (POST / PUT)
+// 2. CREATE / UPDATE
 // ------------------------------------------
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -116,7 +115,7 @@ form.addEventListener('submit', async (e) => {
 
 
 // ------------------------------------------
-// 3. DELETE (Eliminar Cita)
+// 3. DELETE
 // ------------------------------------------
 async function eliminarCita(id) {
     if (!confirm('¿Está seguro de que desea eliminar esta cita?')) {
@@ -142,7 +141,7 @@ async function eliminarCita(id) {
 
 
 // ------------------------------------------
-// 4. Leer para Editar (GET by ID)
+//(GET by ID)
 // ------------------------------------------
 async function cargarCitaParaEdicion(id) {
     try {

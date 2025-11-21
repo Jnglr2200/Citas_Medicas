@@ -1,4 +1,3 @@
-// controllers/citaController.js
 const Cita = require('../models/Cita');
 
 // 1. CREATE (POST)
@@ -16,11 +15,26 @@ exports.createCita = async (req, res) => {
 // 2. READ (GET All)
 exports.getAllCitas = async (req, res) => {
     try {
-        const citas = await Cita.find().sort({ fecha: 1, hora: 1 }); 
+        const busqueda = req.query.q;
+        
+        let filtro = {};
+
+        if (busqueda) {
+          
+            filtro = {
+                $or: [
+                    { paciente: { $regex: busqueda, $options: 'i' } },
+                    { motivo: { $regex: busqueda, $options: 'i' } }
+                ]
+            };
+        }
+
+        const citas = await Cita.find(filtro).sort({ fecha: 1, hora: 1 });
+        
         res.status(200).json(citas);
     } catch (error) {
         console.log(error);
-        res.status(500).send('Hubo un error en el servidor.');
+        res.status(500).send('Hubo un error en el servidor al buscar o recuperar las citas.');
     }
 };
 
